@@ -10,6 +10,3 @@ class DiceRepository(ABC):
     def findById(self,id):
         pass
 
-    @abstractmethod
-    def sumDice(self):
-        pass
