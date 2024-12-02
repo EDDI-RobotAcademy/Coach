@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
-class GameRepository(ABC):
+
+class GameServiceRepository(ABC):
 
     @abstractmethod
-    def create(self, gameCount):
+    def checkWinner(self):
         pass
