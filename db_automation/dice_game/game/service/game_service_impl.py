@@ -3,5 +3,5 @@ from abc import ABC, abstractmethod
 class GameServiceRepository(ABC):
 
     @abstractmethod
-    def sumDiceFirst(self):
+    def checkWinner(self):
         pass
