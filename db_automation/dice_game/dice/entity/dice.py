@@ -11,8 +11,5 @@ class Dice(models.Model):
     def getId(self):
         return self.id
 
-    def getNumber(self):
-        return self.number
-
-    class Meta:
-        db_table="dice"
+    #class Meta:
+        #db_table=db이름

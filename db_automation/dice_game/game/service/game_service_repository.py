@@ -1,9 +1,7 @@
-from django.forms import model_to_dict
+from dice_game.game.repository.game_repository_impl import GameRepositoryImpl
+from dice_game.dice.repository.dice_repository_impl import DiceRepositoryImpl
+from dice_game.game.service.game_service_impl import GameServiceRepository
 
-from dice.repository.dice_repository_impl import DiceRepositoryImpl
-from dice_game.repository.game_repository import GameRepository
-from dice_game.service.game_service import GameServiceRepository
-from dice_game.repository.game_repository_impl import GameRepositoryImpl
 
 class GameServiceRepositoryImpl(GameServiceRepository):
     __instance = None
@@ -23,14 +21,26 @@ class GameServiceRepositoryImpl(GameServiceRepository):
 
         return cls.__instance
 
+    def rollDice(self):
+        for i in range(1,5):
+            return self.__diceRepository.rollDice()
 
-    def sumDiceFirst(self):
+    def __sumDice(self):
         sumDice1,sumDice2=0
-        for id in range(1,5):
-            if 0<id<=2:
-                sumDice1+=self.__diceRepository.findById(id)
-                return sumDice1
+        sumDice1=self.__diceRepository.findById(1)+self.__diceRepository.findById(2)
+        sumDice2=self.__diceRepository.findById(3)+self.__diceRepository.findById(4)
 
-            elif 3<=id<5:
-                sumDice2+=self.__diceRepository.findById(id)
-                return sumDice2
+        if sumDice1>sumDice2:
+            return sumDice1
+        elif sumDice1<sumDice2:
+            return sumDice2
+        else:
+            print("무승부 입니다.")
+
+    def checkWinner(self):
+        lastSumNumber=self.__sumDice()
+
+        return lastSumNumber
+
+
+
