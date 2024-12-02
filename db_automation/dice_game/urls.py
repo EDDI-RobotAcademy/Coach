@@ -9,10 +9,10 @@ router.register(r'game-record', gameRecordController, basename='game-record')
 # Additional URL patterns if needed
 urlpatterns = [
     # Map additional methods explicitly if required
-    path('save/', gameRecordController.as_view({'get': 'save_game_record', 'post': 'save_game_record'}), name='save_game_record'),
+    path('roll/', gameRecordController.as_view({'get': 'roll_dice_and_save', 'post': 'roll_dice_and_save'}), name='roll_dice_and_save'),
     path('check-winner/', gameRecordController.as_view({'get': 'getSumDice'}), name='getSumDice'),
     path('all/', gameRecordController.as_view({'get': 'get_all_records'}), name='get_all_records'),
-    path('record-by-game/', gameRecordController.as_view({'get': 'get_records_by_gameId'}), name='get_records_by_gameId'),
+    path('record-by-gameId/', gameRecordController.as_view({'get': 'get_records_by_gameId'}), name='get_records_by_gameId'),
 ]
 
 # Append router-generated URLs
