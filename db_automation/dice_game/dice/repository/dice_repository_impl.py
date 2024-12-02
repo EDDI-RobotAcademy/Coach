@@ -2,8 +2,8 @@ import random
 
 from django.forms import model_to_dict
 
-from dice.entity.dice import Dice
-from dice.repository.dice_repository import DiceRepository
+from dice_game.dice.entity.dice import Dice
+from dice_game.repository.dice_repository import DiceRepository
 
 
 class DiceRepositoryImpl(DiceRepository):
