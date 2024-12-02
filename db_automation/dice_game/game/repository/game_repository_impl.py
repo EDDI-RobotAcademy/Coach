@@ -1,7 +1,7 @@
 from django.forms import model_to_dict
 
-from game.entity.game import Game
-from game.repository.game_repository import GameRepository
+from dice_game.entity.game import Game
+from dice_game.repository.game_repository import GameRepository
 
 
 class GameRepositoryImpl(GameRepository):

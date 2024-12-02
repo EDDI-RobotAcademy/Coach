@@ -1,9 +1,9 @@
 from django.forms import model_to_dict
 
 from dice.repository.dice_repository_impl import DiceRepositoryImpl
-from game.repository.game_repository import GameRepository
-from game.service.game_service import GameServiceRepository
-from game.repository.game_repository_impl import GameRepositoryImpl
+from dice_game.repository.game_repository import GameRepository
+from dice_game.service.game_service import GameServiceRepository
+from dice_game.repository.game_repository_impl import GameRepositoryImpl
 
 class GameServiceRepositoryImpl(GameServiceRepository):
     __instance = None
@@ -22,14 +22,6 @@ class GameServiceRepositoryImpl(GameServiceRepository):
             cls.__instance = cls()
 
         return cls.__instance
-
-    def gameStart(self):
-        start = input("주사위를 굴리시겠습니까?")
-        if start=="yes":
-            for i in range(2):
-                self.__diceRepository.rollDice()
-        else:
-            print("게임을 종료합니다.")
 
 
     def sumDiceFirst(self):
