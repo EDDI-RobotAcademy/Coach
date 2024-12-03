@@ -1,8 +1,6 @@
 from django.db import models
 
 class Dice(models.Model):
-    for i in range(1,5):
-        id=i
     number=models.IntegerField()
 
     def __str__(self):
