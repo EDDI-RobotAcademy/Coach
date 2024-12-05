@@ -22,6 +22,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # ath('dice/', include("dice.urls")),
+    path('fruit_mart/', include("fruit_mart.urls")),
     path('dice_game/', include("dice_game.urls")),
 ]
