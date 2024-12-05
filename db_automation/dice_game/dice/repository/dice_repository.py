@@ -9,4 +9,3 @@ class DiceRepository(ABC):
     @abstractmethod
     def findById(self,id):
         pass
-
