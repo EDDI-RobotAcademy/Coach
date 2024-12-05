@@ -1,4 +1,4 @@
-from .models import Mart
+from fruit_mart.mart.entity.mart import Mart
 from .mart_repository import MartRepository
 
 class MartRepositoryImpl(MartRepository):

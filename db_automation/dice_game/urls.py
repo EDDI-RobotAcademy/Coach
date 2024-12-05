@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from dice_game.controller.controller import gameRecordController
 
-# Create a router for the controller
+# Create a router for the order
 router = DefaultRouter()
 router.register(r'game-record', gameRecordController, basename='game-record')
 
