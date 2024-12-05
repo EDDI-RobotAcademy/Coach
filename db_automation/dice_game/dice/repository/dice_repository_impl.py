@@ -34,5 +34,3 @@ class DiceRepositoryImpl(DiceRepository):
 
     def findById(self, id):
         return Dice.objects.get(id=id)
-
-
