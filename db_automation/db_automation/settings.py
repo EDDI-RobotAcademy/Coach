@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "dice_game",
+    "fruit_mart",
 ]
 
 MIDDLEWARE = [
