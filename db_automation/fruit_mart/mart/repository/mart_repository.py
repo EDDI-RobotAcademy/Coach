@@ -16,4 +16,3 @@ class MartRepository(ABC):
     @abstractmethod
     def save(self, mart):
         pass
-

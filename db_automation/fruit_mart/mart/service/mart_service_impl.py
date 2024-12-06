@@ -8,8 +8,8 @@ class MartServiceImpl(MartService):
 
     def update_fruit_stock(self, fruit_name, fruit_number):
         mart_list = self.mart_repository.find_all()
-        mart = next((fruit for fruit in mart_list if fruit.fruit_name == fruit_name), None)
-
+        #mart = next((fruit for fruit in mart_list if fruit.fruit_name == fruit_name), None)
+        mart = Mart(fruit_name=fruit_name, fruit_number=fruit_number)
         if mart:
             # 기존 과일이 있으면 수량을 더함
             new_fruit_number = mart.fruit_number + fruit_number
