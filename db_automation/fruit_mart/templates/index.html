@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{% static 'fruit_mart/styles.css' %}">
     <script>
         //현재 재고 출력
-        async function fetchInventory(){
-            const response = await fetch('fruit_mart/inventory');
+        async function fetchInventory() {
+            const response = await fetch('/fruit_mart/get_all_fruits/');
             const data = await response.json();
             document.getElementById("inventory").innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
         }
@@ -37,39 +37,39 @@
 
         // 과일 입고
         async function addFruitStock() {
-            const item = document.getElementById("fruit-item").value;
-            const quantity = document.getElementById("fruit-quantity").value;
+            const fruit_name = document.getElementById("fruit_name").value;
+            const fruit_number = document.getElementById("fruit_number").value;
 
-            if (!item || !quantity) {
+            if (!fruit_name || !fruit_number) {
                 alert("모든 필드를 입력해주세요.");
                 return;
             }
 
-            const response = await fetch('/fruit_mart/add-stock/', {
+            const response = await fetch('/fruit_mart/create_or_update_fruit/', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
                 },
-                body: JSON.stringify({ item, quantity })
+                body: JSON.stringify({ fruit_name, fruit_number: parseInt(fruit_number, 10) })
             });
 
             const data = await response.json();
-            document.getElementById("fruit-result").textContent = data.message || data.error;
+            document.getElementById("fruit-result").textContent = data.message || JSON.stringify(data);
         }
 
         //과일 조회
         async function fetchFruitDetails() {
-            const item = document.getElementById("fruit-name").value;
+            const fruit_name = document.getElementById("fruit-name").value;
 
-            if (!item) {
+            if (!fruit_name) {
                 alert("과일 이름을 입력해주세요.");
                 return;
             }
 
-            const response = await fetch(`/fruit_mart/fruit-details/?item=${item}`);
+            const response = await fetch(`/fruit_mart/get_fruit_by_name/?fruit_name=${fruit_name}`);
             const data = await response.json();
-            document.getElementById("fruit-details").innerHTML = `<pre>${JSON.stringify(data.details, null, 2)}</pre>`;
+            document.getElementById("fruit-details").innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
         }
 
         // 주문 처리
@@ -145,8 +145,9 @@
     <div class="container">
         <h1>Mart Management</h1>
 
-        <!-- 현재 재고 조회 -->
-        <h2>현재 재고 조회</h2>
+
+        <!-- 현재 재고 -->
+        <h2>현재 재고</h2>
         <button onclick="fetchInventory()">현재 재고 확인</button>
         <div id="inventory" class="result"></div>
         <!-- 소비자 생성 -->
@@ -166,12 +167,12 @@
         <form onsubmit="addFruitStock(); return false;">
             {% csrf_token %}
             <div>
-                <label for="fruit-item">물품:</label>
-                <input id="fruit-item" type="text" placeholder="예: 사과">
+                <label for="fruit_name">과일 이름:</label>
+                <input id="fruit_name" type="text" placeholder="예: 사과">
             </div>
             <div>
-                <label for="fruit-quantity">수량:</label>
-                <input id="fruit-quantity" type="number" placeholder="예: 10">
+                <label for="fruit_number">수량:</label>
+                <input id="fruit_number" type="number" placeholder="예: 10">
             </div>
             <button type="submit">입고</button>
         </form>
@@ -186,7 +187,7 @@
             </div>
             <button type="submit">조회</button>
         </form>
-        <div id="fruit-details" class="result"></div>        
+        <div id="fruit-details" class="result"></div>
 
         <!-- 주문 -->
         <h2>주문</h2>
