@@ -1,6 +1,6 @@
-from .mart_repository import MartRepository
-from .models import Mart
-from .mart_service import MartService
+from fruit_mart.mart.repository.mart_repository import MartRepository
+from fruit_mart.mart.entity.mart import Mart
+from fruit_mart.mart.service.mart_service import MartService
 
 class MartServiceImpl(MartService):
     def __init__(self, mart_repository: MartRepository):
