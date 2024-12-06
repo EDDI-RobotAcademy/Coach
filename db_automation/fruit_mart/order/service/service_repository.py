@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class OrderService(ABC):
 
     @abstractmethod
-    def buyFruit(self, customerId, fruitId,numberId):
+    def buyFruit(self, customer, fruit, number):
         pass
 
     @abstractmethod

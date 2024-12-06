@@ -37,7 +37,7 @@ class OrderRepositoryImpl(OrderRepository):
         return Order.objects.get(fruitType=fruit)
 
     def findByNumber(self,number):
-        return Order.objects.get(number=number)
+        return Order.objects.get(buyNumber=number)
 
     def findByCustomer(self, customer):
-        return Order.objects.filter(customerNickName=customer)
+        return Order.objects.get(customerNickName=customer)

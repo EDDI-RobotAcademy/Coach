@@ -22,11 +22,11 @@ class OrderServiceImpl(OrderService):
 
         return cls.__instance
 
-    def buyFruit(self, customerId, fruitId,numberId):
-        fruit = self.__martRepository.find_by_fruit_name(fruitId)
-        customer = self.__customerRepository.커스터머Id(customerId)
-        buyNumber=self.__orderRepository.findById(numberId)
-        return self.__orderRepository.create(customer, fruit,buyNumber)
+    def buyFruit(self, customer, fruit, number):
+        # fruit = self.__orderRepository.findByFruit(fruitId)
+        # customer = self.__orderRepository.findByCustomer(customerId)
+        # number=self.__orderRepository.findById(numberId)
+        return self.__orderRepository.create(customer, fruit, number)
 
     # def findFruit(self, requestFruitId):
     #     return self.__martRepository.findById(requestFruitId)
