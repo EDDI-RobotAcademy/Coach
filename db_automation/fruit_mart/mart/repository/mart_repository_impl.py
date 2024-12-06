@@ -1,5 +1,5 @@
 from fruit_mart.mart.entity.mart import Mart
-from .mart_repository import MartRepository
+from fruit_mart.mart.repository.mart_repository import MartRepository
 
 class MartRepositoryImpl(MartRepository):
     def find_by_fruit_name(self, fruit_name):
