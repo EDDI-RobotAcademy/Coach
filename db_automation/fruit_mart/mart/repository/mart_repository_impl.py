@@ -22,3 +22,19 @@ class MartRepositoryImpl(MartRepository):
             # 과일이 없으면 네임, 수량 새로 업데이트
             mart.save()
             return mart
+        
+    def decrease_stock(self, fruit_name, quantity):
+        fruit = Mart.objects.filter(fruit_name = fruit_name).first()
+        if fruit is None:
+            raise ValueError(f"Fruit '{fruit_name}' not found in Mart database")
+        if fruit.fruit_number < quantity:
+            raise ValueError(f"Not enough stock for '{fruit_name}'")
+        fruit.fruit_number -= quantity
+        fruit.save()
+
+    def increase_stock(self, fruit_name, quantity):
+        fruit = Mart.objects.filter(fruit_name = fruit_name).first()
+        if not fruit:
+            raise ValueError(f"Fruit {fruit_name} does not exist")
+        fruit.fruit_number += quantity
+        fruit.save()

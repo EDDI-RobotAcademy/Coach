@@ -1,27 +1,26 @@
 from abc import ABC, abstractmethod
 
-
 class OrderRepository(ABC):
+
     @abstractmethod
-    def findById(self, id):
+    def getInstance(cls):
         pass
 
     @abstractmethod
-    def findByFruit(self, fruit):
+    def create(self, customer, fruit, quantity):
         pass
 
     @abstractmethod
-    def findByNumber(self, number):
+    def find_all(self):
         pass
 
     @abstractmethod
-    def findByCustomer(self, customer):
+    def find_by_customer(self, customer_name):
         pass
 
     @abstractmethod
-    def create(self, customer, fruit, number):
+    def find_by_order_id(self, order_id):
         pass
 
-    @abstractmethod
-    def findAll(self):
-        pass
+
+
