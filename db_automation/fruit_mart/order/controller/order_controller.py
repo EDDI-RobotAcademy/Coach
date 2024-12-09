@@ -55,16 +55,16 @@ class OrderController(viewsets.ViewSet):
         try:
             customer_name = request.data.get('customer_name')
             order_id = request.data.get('order_id')
-            item = request.data.get('item')
+            refund_item = request.data.get('refund_item')
             refund_quantity = request.data.get('refund_quantity')
 
-            print(f"Received data: customer_name={customer_name}, order_id={order_id}, item={item}, refund_quantity={refund_quantity}")
+            print(f"Received data: customer_name={customer_name}, order_id={order_id}, refund_item={refund_item}, refund_quantity={refund_quantity}")
 
-            if not all([customer_name, order_id, item, refund_quantity]):
+            if not all([customer_name, order_id, refund_item, refund_quantity]):
                 return Response({"error": "All fields are required"}, status=status.HTTP_400_BAD_REQUEST)
 
             refund_quantity = int(refund_quantity)
-            updated_order = self.orderService.refundOrder(order_id, refund_quantity)
+            updated_order = self.orderService.refundOrder(order_id, refund_quantity, refund_item)
 
             return Response({
                 "message": "Refund processed successfully",

@@ -27,7 +27,7 @@ class OrderServiceImpl:
     def findOrderByCustomer(self, customer_name):
         return self.orderRepository.findByCustomer(customer_name)
     
-    def refundOrder(self, order_id, refund_quantity):
+    def refundOrder(self, order_id, refund_quantity, refund_item):
         try:
             refund_quantity = int(refund_quantity)
         except ValueError:
@@ -37,6 +37,11 @@ class OrderServiceImpl:
         if not order:
             raise ValueError(f"Order with ID {order_id} does not exist")
 
+        if order.fruitType != refund_item:
+            raise ValueError(
+                f"Refund item mismatch. Ordered item: {order.fruitType}, Refund item: {refund_item}"
+            )
+        
         if order.buyNumber < refund_quantity:
             raise ValueError("Refund quantity exceeds purchased quantity")
 
